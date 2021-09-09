@@ -68,7 +68,7 @@ class HTMLTableProcessor:
                                   column_name_mapper: ColumnListMapperFunction = None,
                                   known_percentages: Optional[List[str]] = None, row_id_func: RowIdFunction = None,
                                       row_id_name: Optional[str] = None) -> pd.DataFrame:
-        response = requests.get(self.root_url + url, params=query_params)
+        response = requests.get(self.root_url + url, params=query_params, verify=False)
 
         if response.status_code > 399:
             raise requests.exceptions.HTTPError(
