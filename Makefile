@@ -3,7 +3,7 @@ LOG_LEVEL := INFO
 MYPY_RUN_AGAINST_DEFAULT := *.py pybaseball tests
 MYPY_RUN_AGAINST := $(MYPY_RUN_AGAINST_DEFAULT)
 ONLY_MODIFIED := 1
-TEST_RUN_AGAINST := tests
+TEST_RUN_AGAINST := tests/pybaseball
 TEST_FLAGS := -n auto
 
 
@@ -30,6 +30,9 @@ mypy:
 
 test:
 	pytest $(TEST_RUN_AGAINST) $(TEST_FLAGS) --doctest-modules --cov=pybaseball --cov-report term-missing
+
+validate-cache: install
+	python ./scripts/validate_cache.py
 
 # The test-github-actions is here to allow any local developer to test the GitHub actions on their code
 # before pushing and creating a PR. Just install act from https://github.com/nektos/act and run
